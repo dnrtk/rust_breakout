@@ -33,7 +33,7 @@ impl MyEguiApp {
             field: field::Field::new(),
             block_list: Vec::new(),
             ball: ball::Ball::new(),
-            bar: bar::Bar::new(),
+            bar: bar::Bar::new(0.0, field::FIELD_WIDTH),
         };
         for x in 0..BLOCK_NUM_X {
             for y in 0..BLOCK_NUM_Y {
@@ -51,6 +51,17 @@ impl eframe::App for MyEguiApp {
     fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             let painter = ui.painter();
+
+            // 入力判定
+            if ui.input().key_down(Key::ArrowRight) {
+                self.bar.updatePosition(bar::DIRECTION::RIGHT);
+            }
+            else if ui.input().key_down(Key::ArrowLeft) {
+                self.bar.updatePosition(bar::DIRECTION::LEFT);
+            }
+            else if ui.input().key_down(Key::Enter) {
+                self.ball.updateDeg(-45.0);
+            }
 
             // 状態再計算
             self.ball.updatePosition();
