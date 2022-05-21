@@ -64,7 +64,7 @@ impl eframe::App for MyEguiApp {
             }
 
             // 状態再計算
-            self.ball.updatePosition();
+            self.ball.updatePosition(&self.field, &mut self.block_list, &self.bar);
 
             // 再描画
             self.field.repaint(painter);

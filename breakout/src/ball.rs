@@ -1,6 +1,10 @@
 use std::f64::consts::PI;
 use eframe::egui::*;
 
+use super::field;
+use super::block;
+use super::bar;
+
 // Ball parameters
 const BALL_RADIUS: f32 = 5.0;
 const BALL_START_POS_X_INIT: f32 = 250.0;
@@ -38,9 +42,13 @@ impl Ball {
         );
     }
 
-    pub fn updatePosition(&mut self) {
-        // TODO: 衝突判定を追加
-        self.pos += self.pos_delta;
+    pub fn updatePosition(&mut self, field: &field::Field, block_list: &mut Vec<block::Block>, bar: &bar::Bar) {
+        // 移動先座標を計算
+        let mut next_pos = self.pos + self.pos_delta;
+
+        // TODO: barとの衝突判定
+        // TODO: fieldとの衝突判定
+        // TODO: blockとの衝突判定
     }
 
     pub fn repaint(&mut self, painter: &Painter) {
