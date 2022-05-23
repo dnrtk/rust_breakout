@@ -11,8 +11,8 @@ const FIELD_COLOR_INIT: Color32 = Color32::TRANSPARENT;
 const FIELD_BORDER_COLOR_INIT: Color32 = Color32::BLACK;
 
 pub struct Field {
-    pos_min: Pos2,
-    pos_max: Pos2,
+    pub pos_min: Pos2,
+    pub pos_max: Pos2,
     color: Color32,
     border_color: Color32,
 }

@@ -19,8 +19,8 @@ pub enum DIRECTION {
 
 
 pub struct Bar {
-    pos_min: Pos2,
-    pos_max: Pos2,
+    pub pos_min: Pos2,
+    pub pos_max: Pos2,
     color: Color32,
     border_color: Color32,
     speed: f32,

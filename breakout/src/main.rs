@@ -60,7 +60,7 @@ impl eframe::App for MyEguiApp {
                 self.bar.updatePosition(bar::DIRECTION::LEFT);
             }
             else if ui.input().key_down(Key::Enter) {
-                self.ball.updateDeg(-45.0);
+                self.ball.updateDeg(135.0);
             }
 
             // 状態再計算
