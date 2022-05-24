@@ -41,7 +41,7 @@ impl Bar {
         }
     }
 
-    pub fn updatePosition(&mut self, direction: DIRECTION) {
+    pub fn update_position(&mut self, direction: DIRECTION) {
         match direction {
             DIRECTION::RIGHT => {
                 self.pos_max.x += self.speed;

@@ -15,7 +15,8 @@ const BLOCK_NUM_Y: i32 = 3;
 
 
 fn main() {
-    let native_options = eframe::NativeOptions::default();
+    let mut native_options = eframe::NativeOptions::default();
+    native_options.initial_window_size = Some(vec2(field::FIELD_WIDTH, field::FIELD_HEIGHT));
     eframe::run_native("My egui App", native_options, Box::new(|cc| Box::new(MyEguiApp::new(cc))));
 }
 
@@ -28,7 +29,8 @@ struct MyEguiApp {
 }
 
 impl MyEguiApp {
-    fn new(cc: &eframe::CreationContext<'_>) -> Self {
+    fn new(_cc: &eframe::CreationContext<'_>) -> Self {
+        // Game field生成
         let mut ins = Self {
             field: field::Field::new(),
             block_list: Vec::new(),
@@ -48,23 +50,25 @@ impl MyEguiApp {
 }
 
 impl eframe::App for MyEguiApp {
-    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             let painter = ui.painter();
 
             // 入力判定
             if ui.input().key_down(Key::ArrowRight) {
-                self.bar.updatePosition(bar::DIRECTION::RIGHT);
+                self.bar.update_position(bar::DIRECTION::RIGHT);
             }
             else if ui.input().key_down(Key::ArrowLeft) {
-                self.bar.updatePosition(bar::DIRECTION::LEFT);
-            }
-            else if ui.input().key_down(Key::Enter) {
-                self.ball.updateDeg(135.0);
+                self.bar.update_position(bar::DIRECTION::LEFT);
             }
 
             // 状態再計算
-            self.ball.updatePosition(&self.field, &mut self.block_list, &self.bar);
+            self.ball.update_position(&self.field, &mut self.block_list, &self.bar);
+
+            // クリア判定
+            if self.block_list.len() == 0 {
+                self.field.show_gameclear(painter);
+            }
 
             // 再描画
             self.field.repaint(painter);
@@ -73,7 +77,6 @@ impl eframe::App for MyEguiApp {
             }
             self.ball.repaint(painter);
             self.bar.repaint(painter);
-
         });
 
         // 次フレームの再描画要求
