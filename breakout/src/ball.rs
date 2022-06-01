@@ -145,4 +145,8 @@ impl Ball {
             Stroke::new(1.0, self.color),
         );
     }
+
+    pub fn isStopped(&mut self) -> bool {
+        return self.speed == 0.0;
+    }
 }

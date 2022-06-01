@@ -69,6 +69,9 @@ impl eframe::App for MyEguiApp {
             if self.block_list.len() == 0 {
                 self.field.show_gameclear(painter);
             }
+            else if self.ball.isStopped() {
+                self.field.show_gameover(painter);
+            }
 
             // 再描画
             self.field.repaint(painter);

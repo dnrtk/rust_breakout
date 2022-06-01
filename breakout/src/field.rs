@@ -35,6 +35,17 @@ impl Field {
             Stroke::new(1.0, self.border_color),
         );
     }
+
+    pub fn show_gameover(&mut self, painter: &Painter) {
+        painter.text(
+            pos2(FIELD_WIDTH/2.0, FIELD_HEIGHT/2.0),
+            Align2::CENTER_CENTER,
+            "GAME OVER!!",
+            FontId::proportional(80.0),
+            Color32::DARK_RED,
+        );
+    }
+
     pub fn show_gameclear(&mut self, painter: &Painter) {
         painter.text(
             pos2(FIELD_WIDTH/2.0, FIELD_HEIGHT/2.0),
