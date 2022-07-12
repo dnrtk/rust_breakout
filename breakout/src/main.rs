@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 use eframe::egui;
 use eframe::egui::*;
 
@@ -69,7 +71,7 @@ impl eframe::App for MyEguiApp {
             if self.block_list.len() == 0 {
                 self.field.show_gameclear(painter);
             }
-            else if self.ball.isStopped() {
+            else if self.ball.is_stopped() {
                 self.field.show_gameover(painter);
             }
 

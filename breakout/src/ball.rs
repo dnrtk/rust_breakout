@@ -146,7 +146,7 @@ impl Ball {
         );
     }
 
-    pub fn isStopped(&mut self) -> bool {
+    pub fn is_stopped(&mut self) -> bool {
         return self.speed == 0.0;
     }
 }
