@@ -32,3 +32,20 @@ impl Block {
         );
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_init() {
+        let block_ins = Block::new(1.2, 3.4);
+        assert_eq!(block_ins.pos_min, pos2(1.2, 3.4));
+    }
+
+    #[test]
+    fn test_init2() {
+        let block_ins = Block::new(1.2, 3.4);
+        assert_eq!(block_ins.pos_max, pos2(1.2+BLOCK_WIDTH, 3.4+BLOCK_HEIGHT));
+    }
+}

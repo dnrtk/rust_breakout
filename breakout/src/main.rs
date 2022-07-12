@@ -1,12 +1,13 @@
-#![windows_subsystem = "windows"]
+// #![windows_subsystem = "windows"]
 
 use eframe::egui;
 use eframe::egui::*;
 
-mod field;
-mod ball;
-mod block;
-mod bar;
+use breakout::*;
+// mod field;
+// mod ball;
+// mod block;
+// mod bar;
 
 // Block start position
 const BLOCK_START_POS_X: f32 = 50.0;
