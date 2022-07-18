@@ -69,3 +69,23 @@ impl Bar {
         );
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_init() {
+        let bar_ins = Bar::new(0.0, 500.0);
+        assert_eq!(bar_ins.pos_min, pos2(BAR_START_POS_X_INIT, BAR_START_POS_Y_INIT));
+        assert_eq!(bar_ins.pos_max, pos2(BAR_START_POS_X_INIT + BAR_WIDTH, BAR_START_POS_Y_INIT + BAR_HEIGHT));
+    }
+
+    #[test]
+    fn test_init2() {
+        let bar_ins = Bar::new(0.0, 500.0);
+        assert_eq!(bar_ins.left_min, 0.0);
+        assert_eq!(bar_ins.right_max, 500.0);
+    }
+}
